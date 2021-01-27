@@ -65,7 +65,7 @@
 
                      <div class="col-md-4 status">
                         <h5>$ <span id="subTotal">1278</span></h5>
-                        <h5>$0</h5>
+                        <h5>$ <span id="tax">127</span></h5>
                         <h5>$ <span id="total">1278</span></h5>
                      </div>
                   </div>
@@ -102,13 +102,14 @@
       function addingSection(btnId,textId,Price){
           //number of selected quantity section
           const selectItem = document.getElementById(btnId).value;
-         const selectNumberOfItem = parseInt(selectItem);
+         const selectNumberOfItem = parseFloat(selectItem);
          const totalSelectedItem = selectNumberOfItem + 1;
          document.getElementById(btnId).value=totalSelectedItem;
          //total amount section
          var numberOfEachItemPrice = Price;
          const totalPhonePrice = totalSelectedItem * numberOfEachItemPrice;
          document.getElementById(textId).innerText = totalPhonePrice;
+
          totalCost();
       }
 
@@ -116,7 +117,7 @@
       function removingSection(btnId,textId,Price){
           //number of removed quantity section
           const removeSelectItem = document.getElementById(btnId).value;
-         const selectNumberOfRemovePhone = parseInt(removeSelectItem);
+         const selectNumberOfRemovePhone = parseFloat(removeSelectItem);
          const totalSelectedRemovePhone = selectNumberOfRemovePhone - 1;
          if(totalSelectedRemovePhone == -1){
             totalSelectedRemovePhone = 0;
@@ -126,21 +127,25 @@
          //total amount section
          var numberOfEachPhonePrice = Price;
          const afterRemovedTotalSelectedPhone =  document.getElementById(btnId).value;
-         const afterRemovedTotalNumberOfSelectedPhone = parseInt(afterRemovedTotalSelectedPhone);
+         const afterRemovedTotalNumberOfSelectedPhone = parseFloat(afterRemovedTotalSelectedPhone);
          const afterRemovedTotalPhonePrice = afterRemovedTotalNumberOfSelectedPhone * numberOfEachPhonePrice;
          document.getElementById(textId).innerText = afterRemovedTotalPhonePrice;
+
          totalCost();
       }
 
       //total calculation function
       function totalCost(){
          const total1 = document.getElementById("phonePrice").innerText;
-         const totalNumber1 = parseInt(total1);
+         const totalNumber1 = parseFloat(total1);
          const total2 = document.getElementById("coverPrice").innerText;
-         const totalNumber2 = parseInt(total2);
-         const total = total1 + total2;
+         const totalNumber2 = parseFloat(total2);
+         const total = totalNumber1 + totalNumber2;
+         const tax = Math.floor(total / 10);
+         const totalWithTax = total+ tax;
          document.getElementById("subTotal").innerText=total;
-         document.getElementById("total").innerText=total;
+         document.getElementById("tax").innerText = tax;
+         document.getElementById("total").innerText=totalWithTax;
       }
    </script>
 </body>
