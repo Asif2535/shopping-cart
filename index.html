@@ -65,7 +65,7 @@
 
                      <div class="col-md-4 status">
                         <h5>$ <span id="subTotal">1278</span></h5>
-                        <h5>$ <span id="tax">127</span></h5>
+                        <h5>$ <span id="tax">128</span></h5>
                         <h5>$ <span id="total">1278</span></h5>
                      </div>
                   </div>
@@ -141,7 +141,7 @@
          const total2 = document.getElementById("coverPrice").innerText;
          const totalNumber2 = parseFloat(total2);
          const total = totalNumber1 + totalNumber2;
-         const tax = Math.floor(total / 10);
+         const tax = Math.round(total / 10);
          const totalWithTax = total+ tax;
          document.getElementById("subTotal").innerText=total;
          document.getElementById("tax").innerText = tax;
@@ -149,5 +149,4 @@
       }
    </script>
 </body>
-
 </html>
