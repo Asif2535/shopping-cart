@@ -17,7 +17,7 @@
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
                <div class="cart-item">
-                  <div class="row">
+                  <div class="row" id="phoneSection">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
@@ -25,31 +25,33 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="numberOfRemovePhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button id="numberOfRemovePhone" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="selectNumberOfPhone" type="text" class="form-control text-center" value="1">
                            <button id="numberOfIphone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$ <span id="phonePrice">1219</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img id="phoneImg" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
 
                <div class="cart-item">
-                  <div class="row">
+                  <div class="row" id="caseSection">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
                         <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="numberOfRemoveCover" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button id="numberOfRemoveCover" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="selectNumberOfCover" type="text" class="form-control text-center" value="1">
                            <button id="numberOfCover" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5>$ <span id="coverPrice">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img id="caseImg" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -79,32 +81,31 @@
    </section>
    <script>
       const numberOfAddingIphone = document.getElementById("numberOfIphone");
-      numberOfAddingIphone.addEventListener("click", function(){
-         addingSection("selectNumberOfPhone","phonePrice",1219);
+      numberOfAddingIphone.addEventListener("click", function () {
+         addingSection("selectNumberOfPhone", "phonePrice", 1219);
       })
 
       const numberOfRemovePhone = document.getElementById("numberOfRemovePhone");
-      numberOfRemovePhone.addEventListener("click", function(){
-         removingSection("selectNumberOfPhone","phonePrice",1219);
+      numberOfRemovePhone.addEventListener("click", function () {
+         removingSection("selectNumberOfPhone", "phonePrice", 1219);
       })
 
       const numberOfAddingCover = document.getElementById("numberOfCover");
-      numberOfAddingCover.addEventListener("click", function(){
-         addingSection("selectNumberOfCover","coverPrice",59);
+      numberOfAddingCover.addEventListener("click", function () {
+         addingSection("selectNumberOfCover", "coverPrice", 59);
       })
 
       const numberOfRemovingCover = document.getElementById("numberOfRemoveCover");
-      numberOfRemovingCover.addEventListener("click", function(){
-         removingSection("selectNumberOfCover","coverPrice",59);
-      }) 
-      
+      numberOfRemovingCover.addEventListener("click", function () {
+         removingSection("selectNumberOfCover", "coverPrice", 59);
+      })
 
-      function addingSection(btnId,textId,Price){
-          //number of selected quantity section
-          const selectItem = document.getElementById(btnId).value;
+      function addingSection(btnId, textId, Price) {
+         //number of selected quantity section
+         const selectItem = document.getElementById(btnId).value;
          const selectNumberOfItem = parseFloat(selectItem);
          const totalSelectedItem = selectNumberOfItem + 1;
-         document.getElementById(btnId).value=totalSelectedItem;
+         document.getElementById(btnId).value = totalSelectedItem;
          //total amount section
          var numberOfEachItemPrice = Price;
          const totalPhonePrice = totalSelectedItem * numberOfEachItemPrice;
@@ -114,19 +115,19 @@
       }
 
 
-      function removingSection(btnId,textId,Price){
-          //number of removed quantity section
-          const removeSelectItem = document.getElementById(btnId).value;
+      function removingSection(btnId, textId, Price) {
+         //number of removed quantity section
+         const removeSelectItem = document.getElementById(btnId).value;
          const selectNumberOfRemovePhone = parseFloat(removeSelectItem);
          const totalSelectedRemovePhone = selectNumberOfRemovePhone - 1;
-         if(totalSelectedRemovePhone == -1){
+         if (totalSelectedRemovePhone == -1) {
             totalSelectedRemovePhone = 0;
          }
          document.getElementById(btnId).value = totalSelectedRemovePhone;
 
          //total amount section
          var numberOfEachPhonePrice = Price;
-         const afterRemovedTotalSelectedPhone =  document.getElementById(btnId).value;
+         const afterRemovedTotalSelectedPhone = document.getElementById(btnId).value;
          const afterRemovedTotalNumberOfSelectedPhone = parseFloat(afterRemovedTotalSelectedPhone);
          const afterRemovedTotalPhonePrice = afterRemovedTotalNumberOfSelectedPhone * numberOfEachPhonePrice;
          document.getElementById(textId).innerText = afterRemovedTotalPhonePrice;
@@ -135,18 +136,19 @@
       }
 
       //total calculation function
-      function totalCost(){
+      function totalCost() {
          const total1 = document.getElementById("phonePrice").innerText;
          const totalNumber1 = parseFloat(total1);
          const total2 = document.getElementById("coverPrice").innerText;
          const totalNumber2 = parseFloat(total2);
          const total = totalNumber1 + totalNumber2;
          const tax = Math.round(total / 10);
-         const totalWithTax = total+ tax;
-         document.getElementById("subTotal").innerText=total;
+         const totalWithTax = total + tax;
+         document.getElementById("subTotal").innerText = total;
          document.getElementById("tax").innerText = tax;
-         document.getElementById("total").innerText=totalWithTax;
+         document.getElementById("total").innerText = totalWithTax;
       }
    </script>
 </body>
+
 </html>
